@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth theme-sepia">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bát Bảo - Gieo trang, gặt tri thức</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Custom Theme CSS Variables */
+        :root.theme-light {
+            --bg-main: #fbf8f3;
+            --bg-card: #ffffff;
+            --bg-header: rgba(251, 248, 243, 0.92);
+            --text-main: #1c1917;
+            --text-muted: #78716c;
+            --accent: #9a3412;
+            --accent-hover: #7c2d12;
+            --border-color: #e7e5e4;
+            --modal-bg: #ffffff;
+        }
+
+        :root.theme-sepia {
+            --bg-main: #f4ecd8;
+            --bg-card: #f9f3e5;
+            --bg-header: rgba(244, 236, 216, 0.92);
+            --text-main: #3a2e2b;
+            --text-muted: #705e57;
+            --accent: #854d0e;
+            --accent-hover: #713f12;
+            --border-color: #e2d5be;
+            --modal-bg: #f9f3e5;
+        }
+
+        :root.theme-dark {
+            --bg-main: #18181b;
+            --bg-card: #27272a;
+            --bg-header: rgba(24, 24, 27, 0.92);
+            --text-main: #f4f4f5;
+            --text-muted: #a1a1aa;
+            --accent: #ea580c;
+            --accent-hover: #f97316;
+            --border-color: #3f3f46;
+            --modal-bg: #27272a;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .font-serif-heading {
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .font-serif-body {
+            font-family: 'Lora', Georgia, serif;
+        }
+
+        .bg-custom-card {
+            background-color: var(--bg-card);
+            border-color: var(--border-color);
+        }
+
+        .bg-custom-header {
+            background-color: var(--bg-header);
+        }
+
+        .text-custom-accent {
+            color: var(--accent);
+        }
+
+        .bg-custom-accent {
+            background-color: var(--accent);
+        }
+
+        .border-custom {
+            border-color: var(--border-color);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-main);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
+
+        .book-shadow {
+            box-shadow: 4px 6px 15px -2px rgba(0, 0, 0, 0.15), 1px 1px 4px 0px rgba(0, 0, 0, 0.1);
+        }
+        .book-shadow:hover {
+            box-shadow: 8px 12px 22px -2px rgba(0, 0, 0, 0.22), 2px 2px 6px 0px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+
+    <!-- Header / Navigation -->
+    <header class="sticky top-0 z-40 bg-custom-header backdrop-blur-md border-b border-custom transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo & Brand -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-xl bg-custom-accent text-white flex items-center justify-center text-xl font-bold shadow-md transform group-hover:rotate-6 transition-transform">
+                    <i class="fa-solid fa-book-bookmark"></i>
+                </div>
+                <div>
+                    <span class="block font-serif-heading font-bold text-xl sm:text-2xl tracking-wide">Bát Bảo</span>
+                    <span class="block text-xs text-custom-accent font-medium tracking-wider uppercase -mt-1">Gieo trang • Gặt tri thức</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links (Desktop) -->
+            <nav class="hidden md:flex items-center gap-8 font-medium text-sm">
+                <a href="#trang-chu" class="hover:text-custom-accent transition-colors">Trang chủ</a>
+                <a href="#gioi-thieu" class="hover:text-custom-accent transition-colors">Giới thiệu</a>
+                <a href="#hoat-dong" class="hover:text-custom-accent transition-colors">Hình ảnh & Video</a>
+                <a href="#thu-vien" class="hover:text-custom-accent transition-colors">Thư viện</a>
+                <a href="#dong-gop" class="hover:text-custom-accent transition-colors">Đóng góp</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="flex items-center gap-3">
+                <div class="relative group">
+                    <button id="themeToggleBtn" aria-label="Đổi giao diện" class="p-2.5 rounded-lg border border-custom bg-custom-card hover:border-custom-accent transition-all flex items-center gap-2 text-xs font-semibold">
+                        <i id="themeIcon" class="fa-solid fa-feather text-sm"></i>
+                        <span id="themeLabel" class="hidden sm:inline">Chế độ đọc</span>
+                    </button>
+                    <div class="absolute right-0 mt-2 w-36 rounded-xl bg-custom-card border border-custom shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 p-1.5">
+                        <button onclick="setTheme('light')" class="w-full text-left px-3 py-2 text-xs rounded-lg flex items-center gap-2 hover:bg-stone-200/50 dark:hover:bg-zinc-700/50">
+                            <i class="fa-solid fa-sun text-amber-500"></i> Nền Sáng
+                        </button>
+                        <button onclick="setTheme('sepia')" class="w-full text-left px-3 py-2 text-xs rounded-lg flex items-center gap-2 hover:bg-stone-200/50 dark:hover:bg-zinc-700/50">
+                            <i class="fa-solid fa-book-open text-amber-700"></i> Sepia Giấy
+                        </button>
+                        <button onclick="setTheme('dark')" class="w-full text-left px-3 py-2 text-xs rounded-lg flex items-center gap-2 hover:bg-stone-200/50 dark:hover:bg-zinc-700/50">
+                            <i class="fa-solid fa-moon text-indigo-400"></i> Ban Đêm
+                        </button>
+                    </div>
+                </div>
+
+                <button onclick="toggleBookmarksDrawer()" class="p-2.5 rounded-lg border border-custom bg-custom-card hover:border-custom-accent transition-all relative" title="Sách đã lưu">
+                    <i class="fa-solid fa-bookmark text-custom-accent"></i>
+                    <span id="bookmarkCount" class="absolute -top-1.5 -right-1.5 bg-red-600 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center hidden">0</span>
+                </button>
+
+                <button id="mobileMenuBtn" class="md:hidden p-2.5 rounded-lg border border-custom bg-custom-card">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="hidden md:hidden border-t border-custom bg-custom-card px-4 py-4 space-y-3 font-medium text-sm">
+            <a href="#trang-chu" onclick="closeMobileMenu()" class="block py-2 hover:text-custom-accent">Trang chủ</a>
+            <a href="#gioi-thieu" onclick="closeMobileMenu()" class="block py-2 hover:text-custom-accent">Giới thiệu</a>
+            <a href="#hoat-dong" onclick="closeMobileMenu()" class="block py-2 hover:text-custom-accent">Hình ảnh & Video</a>
+            <a href="#thu-vien" onclick="closeMobileMenu()" class="block py-2 hover:text-custom-accent">Thư viện</a>
+            <a href="#dong-gop" onclick="closeMobileMenu()" class="block py-2 hover:text-custom-accent">Đóng góp</a>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section id="trang-chu" class="relative py-12 lg:py-20 overflow-hidden border-b border-custom">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="max-w-4xl mx-auto text-center space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-custom bg-custom-card text-xs font-medium tracking-wide shadow-sm">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        Thư viện văn học cộng đồng phi lợi nhuận
+                    </div>
+                    
+                    <h1 class="font-serif-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                        Bát Bảo — <br class="hidden sm:inline">
+                        <span class="italic text-custom-accent font-normal">Gieo Trang, Gặt Tri Thức</span>
+                    </h1>
+
+                    <p class="font-serif-body text-base sm:text-lg opacity-85 leading-relaxed max-w-2xl mx-auto">
+                        Nơi lưu giữ, nâng niu và lan tỏa những trang văn sống mãi với thời gian. Sinh ra từ tâm huyết của những người trẻ khao khát mang tri thức văn học Việt Nam chạm tới mọi độc giả — hoàn toàn tự do và miễn phí.
+                    </p>
+
+                    <!-- Video YouTube Giới Thiệu Ngay Đầu Trang -->
+                    <div class="pt-4 max-w-3xl mx-auto">
+                        <div class="relative w-full aspect-video rounded-2xl overflow-hidden border-2 border-custom shadow-2xl bg-black">
+                            <iframe 
+                                class="w-full h-full" 
+                                src="https://www.youtube.com/embed/uhoy30SJm_E" 
+                                title="Video Giới Thiệu Bát Bảo - Book Talk" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <p class="text-xs text-center opacity-75 mt-3 font-serif-body italic flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-play text-custom-accent text-[11px]"></i> Video tổng kết sự kiện Book Talk - Dự án Bát Bảo
+                        </p>
+                    </div>
+
+                    <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <a href="#thu-vien" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-custom-accent text-white font-medium hover:opacity-90 shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-book-open"></i> Khám phá Thư viện
+                        </a>
+                        <a href="#hoat-dong" class="w-full sm:w-auto px-7 py-3.5 rounded-xl border border-custom bg-custom-card font-medium hover:border-custom-accent transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-photo-film"></i> Xem Hình Ảnh & Video
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="absolute inset-0 pointer-events-none opacity-5 flex justify-between items-center px-10">
+                <i class="fa-solid fa-quote-left text-9xl"></i>
+                <i class="fa-solid fa-feather-pointed text-9xl"></i>
+            </div>
+        </section>
+
+        <!-- Giới thiệu nhóm Bát Bảo & Sứ mệnh -->
+        <section id="gioi-thieu" class="py-16 lg:py-20 border-b border-custom bg-stone-500/5">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <div class="lg:col-span-6 space-y-6">
+                        <div class="inline-block text-xs font-bold tracking-widest text-custom-accent uppercase">
+                            Chuyện Về Chúng Tôi
+                        </div>
+                        <h2 class="font-serif-heading text-3xl sm:text-4xl font-bold">
+                            Tủ sách số mở từ trái tim sinh viên
+                        </h2>
+                        <div class="space-y-4 font-serif-body text-sm sm:text-base leading-relaxed opacity-90">
+                            <p>
+                                Dự án <strong>Bát Bảo</strong> bắt đầu từ một niềm trăn trở nhỏ của nhóm sinh viên yêu văn chương: Làm sao để các tác phẩm văn học kinh điển, truyện dân gian sâu sắc cũng như văn học hiện đại có thể tiếp cận độc giả một cách trọn vẹn, thuận tiện và không có rào cản chi phí?
+                            </p>
+                            <p>
+                                Với thông điệp <em>"Gieo trang - Gặt tri thức"</em>, chúng tôi coi mỗi tác phẩm là một hạt giống tư tưởng. Khi bạn gieo một trang sách vào tâm trí, cái bạn nhận về không chỉ là kiến thức, mà là sự thấu cảm và chiều sâu tâm hồn.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-6">
+                        <div class="bg-custom-card p-6 sm:p-8 rounded-2xl border border-custom shadow-sm space-y-4">
+                            <h3 class="font-serif-heading font-bold text-xl border-b border-custom pb-3 flex items-center gap-2">
+                                <i class="fa-solid fa-gem text-custom-accent"></i> Ý Nghĩa "Bát Bảo"
+                            </h3>
+                            <p class="text-xs text-custom-accent font-medium">8 Kho tàng tri thức & Giá trị văn học cốt lõi nhóm theo đuổi:</p>
+                            
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+                                <div class="p-3 rounded-xl border border-custom text-center space-y-1">
+                                    <div class="font-serif-heading font-bold text-lg text-custom-accent">TRI</div>
+                                    <div class="text-[11px] opacity-80">Hiểu biết sâu sắc</div>
+                                </div>
+                                <div class="p-3 rounded-xl border border-custom text-center space-y-1">
+                                    <div class="font-serif-heading font-bold text-lg text-custom-accent">CẢM</div>
+                                    <div class="text-[11px] opacity-80">Rung động tâm hồn</div>
+                                </div>
+                                <div class="p-3 rounded-xl border border-custom text-center space-y-1">
+                                    <div class="font-serif-heading font-bold text-lg text-custom-accent">LƯU</div>
+                                    <div class="text-[11px] opacity-80">Gìn giữ di sản</div>
+                                </div>
+                                <div class="p-3 rounded-xl border border-custom text-center space-y-1">
+                                    <div class="font-serif-heading font-bold text-lg text-custom-accent">LAN</div>
+                                    <div class="text-[11px] opacity-80">Lan tỏa câu chữ</div>
+                                </div>
+                                <div class="p-3 rounded-xl border border-custom text-center space-y-1">
+                                    <div class="font-serif-heading font-bold text-lg text-custom-accent">ĐỒNG</div>
+                                    <div class="text-[11px] opacity-80">Kết nối cộng đồng</div>
+                                </div>
+                                <div class="p-3 rounded-xl border border-custom text-center space-y-1">
+                                    <div class="font-serif-heading font-bold text-lg text-custom-accent">SÁNG</div>
+                                    <div class="text-[11px] opacity-80">Khơi nguồn cảm hứng</div>
+                                </div>
+                                <div class="p-3 rounded-xl border border-custom text-center space-y-1">
+                                    <div class="font-serif-heading font-bold text-lg text-custom-accent">BẢN</div>
+                                    <div class="text-[11px] opacity-80">Tôn trọng tác quyền</div>
+                                </div>
+                                <div class="p-3 rounded-xl border border-custom text-center space-y-1">
+                                    <div class="font-serif-heading font-bold text-lg text-custom-accent">TÂM</div>
+                                    <div class="text-[11px] opacity-80">Phụng sự miễn phí</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Hình Ảnh & Video Hoạt Động Nhóm -->
+        <section id="hoat-dong" class="py-16 lg:py-20 border-b border-custom">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                
+                <div class="text-center max-w-2xl mx-auto space-y-2">
+                    <span class="text-xs font-bold tracking-widest text-custom-accent uppercase">Khoảnh Khắc Đáng Nhớ</span>
+                    <h2 class="font-serif-heading text-3xl sm:text-4xl font-bold">Hình Ảnh & Video Nhóm Dự Án</h2>
+                    <p class="text-xs sm:text-sm opacity-80 font-serif-body">
+                        Chuỗi sự kiện Book Talk - "Gieo Trang, Gặt Tri Thức" tại không gian lớp học SSG105 cùng thành viên nhóm Bát Bảo và độc giả.
+                    </p>
+                </div>
+
+                <!-- Highlight Video Player Container (YouTube) -->
+                <div class="max-w-4xl mx-auto bg-custom-card rounded-2xl border border-custom p-4 sm:p-6 shadow-lg space-y-4">
+                    <div class="flex items-center justify-between border-b border-custom pb-3">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-circle-play text-custom-accent text-lg"></i>
+                            <h3 class="font-serif-heading font-bold text-base sm:text-lg">Video Tổng Kết Sự Kiện Book Talk (SSG105)</h3>
+                        </div>
+                        <span class="text-xs px-2.5 py-1 rounded-full bg-custom-accent text-white font-medium">YouTube</span>
+                    </div>
+
+                    <!-- Responsive Video Wrapper -->
+                    <div class="relative w-full aspect-video rounded-xl overflow-hidden bg-black shadow-inner">
+                        <iframe 
+                            class="w-full h-full" 
+                            src="https://www.youtube.com/embed/uhoy30SJm_E" 
+                            title="Video Sự Kiện Bát Bảo" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- Photo Gallery Grid Sử Dụng 4 Ảnh Thật Của Nhóm -->
+                <div>
+                    <h3 class="font-serif-heading font-bold text-xl mb-6 text-center sm:text-left flex items-center gap-2">
+                        <i class="fa-solid fa-images text-custom-accent"></i> Album Ảnh Sự Kiện & Thành Viên
+                    </h3>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Photo 1: Thành viên & Sách -->
+                        <div class="bg-custom-card rounded-2xl border border-custom overflow-hidden shadow-md group hover:-translate-y-1 transition-all">
+                            <div class="h-56 overflow-hidden bg-stone-200">
+                                <img src="assets/nhom-1.jpg" alt="Thành viên nhóm Bát Bảo giao lưu" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-serif-heading font-bold text-sm">Giao Lưu & Chia Sẻ Sách</h4>
+                                <p class="text-xs opacity-75 mt-1">Các thành viên hào hứng giới thiệu những tác phẩm hay tới độc giả.</p>
+                            </div>
+                        </div>
+
+                        <!-- Photo 2: Trưng bày gian sách -->
+                        <div class="bg-custom-card rounded-2xl border border-custom overflow-hidden shadow-md group hover:-translate-y-1 transition-all">
+                            <div class="h-56 overflow-hidden bg-stone-200">
+                                <img src="assets/nhom-2.jpg" alt="Ban tổ chức Bát Bảo và bàn sách" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-serif-heading font-bold text-sm">Trưng Bày Tủ Sách</h4>
+                                <p class="text-xs opacity-75 mt-1">Mô hình gian trưng bày sách đa dạng thể loại tại lớp học SSG105.</p>
+                            </div>
+                        </div>
+
+                        <!-- Photo 3: Standee Bát Bảo -->
+                        <div class="bg-custom-card rounded-2xl border border-custom overflow-hidden shadow-md group hover:-translate-y-1 transition-all">
+                            <div class="h-56 overflow-hidden bg-stone-200">
+                                <img src="assets/nhom-3.jpg" alt="Check-in Standee Bát Bảo Đại học FPT" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-serif-heading font-bold text-sm">Gieo Trang - Gặt Tri Thức</h4>
+                                <p class="text-xs opacity-75 mt-1">Standee và mã QR Scan Me để độc giả quét mã đọc sách online nhanh chóng.</p>
+                            </div>
+                        </div>
+
+                        <!-- Photo 4: Toàn cảnh trưng bày sách -->
+                        <div class="bg-custom-card rounded-2xl border border-custom overflow-hidden shadow-md group hover:-translate-y-1 transition-all">
+                            <div class="h-56 overflow-hidden bg-stone-200">
+                                <img src="assets/nhom-4.jpg" alt="Thành viên nhóm Bát Bảo bên bàn sách" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-serif-heading font-bold text-sm">Góc Đọc Tinh Tế</h4>
+                                <p class="text-xs opacity-75 mt-1">Bàn trưng bày hàng chục đầu sách phong phú cho người đọc tự do trải nghiệm.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Thư viện Tác giả & Tác phẩm Interactive -->
+        <section id="thu-vien" class="py-16 lg:py-24 border-b border-custom">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                    <div>
+                        <span class="text-xs font-bold tracking-widest text-custom-accent uppercase">Không gian đọc</span>
+                        <h2 class="font-serif-heading text-3xl sm:text-4xl font-bold mt-1">Tủ Sách Bát Bảo</h2>
+                    </div>
+                    <p class="text-xs sm:text-sm text-custom-accent font-serif-body italic">
+                        "Mỗi cuốn sách là một hòn đảo kho báu."
+                    </p>
+                </div>
+
+                <!-- Controls: Search & Category Filters -->
+                <div class="space-y-6 mb-10">
+                    <div class="relative max-w-xl">
+                        <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 opacity-50 text-sm"></i>
+                        <input type="text" id="searchInput" oninput="filterBooks()" placeholder="Tìm tên tác phẩm, tác giả hoặc từ khóa..." 
+                               class="w-full pl-11 pr-4 py-3 rounded-xl border border-custom bg-custom-card focus:outline-none focus:border-custom-accent transition-colors text-sm">
+                    </div>
+
+                    <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none text-xs sm:text-sm" id="categoryTabs">
+                        <button onclick="setCategory('all')" data-cat="all" class="cat-tab px-4 py-2 rounded-xl border border-custom font-medium whitespace-nowrap transition-all bg-custom-accent text-white">
+                            Tất cả
+                        </button>
+                        <button onclick="setCategory('dangian')" data-cat="dangian" class="cat-tab px-4 py-2 rounded-xl border border-custom font-medium whitespace-nowrap transition-all bg-custom-card hover:border-custom-accent">
+                            Truyện Cười & Dân Gian
+                        </button>
+                        <button onclick="setCategory('hiendai')" data-cat="hiendai" class="cat-tab px-4 py-2 rounded-xl border border-custom font-medium whitespace-nowrap transition-all bg-custom-card hover:border-custom-accent">
+                            Văn học Hiện đại
+                        </button>
+                        <button onclick="setCategory('trungdai')" data-cat="trungdai" class="cat-tab px-4 py-2 rounded-xl border border-custom font-medium whitespace-nowrap transition-all bg-custom-card hover:border-custom-accent">
+                            Văn học Trung đại
+                        </button>
+                        <button onclick="setCategory('thoca')" data-cat="thoca" class="cat-tab px-4 py-2 rounded-xl border border-custom font-medium whitespace-nowrap transition-all bg-custom-card hover:border-custom-accent">
+                            Thơ ca
+                        </button>
+                        <button onclick="setCategory('truyenngan')" data-cat="truyenngan" class="cat-tab px-4 py-2 rounded-xl border border-custom font-medium whitespace-nowrap transition-all bg-custom-card hover:border-custom-accent">
+                            Truyện ngắn
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Books Grid -->
+                <div id="booksGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- Dynamic rendering via JS -->
+                </div>
+
+                <div id="emptyState" class="hidden text-center py-16 space-y-3">
+                    <i class="fa-solid fa-book-bookmark text-4xl text-custom-accent opacity-50"></i>
+                    <p class="font-serif-heading font-bold text-lg">Không tìm thấy tác phẩm phù hợp</p>
+                    <p class="text-xs opacity-75">Thử tìm kiếm với từ khóa khác hoặc chuyển sang danh mục khác.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Góc Đóng góp Tác phẩm / Ý kiến -->
+        <section id="dong-gop" class="py-16 lg:py-20 border-b border-custom">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-custom-card rounded-2xl border border-custom p-6 sm:p-10 shadow-sm space-y-6">
+                    <div class="text-center space-y-2">
+                        <span class="text-xs font-bold tracking-widest text-custom-accent uppercase">Cùng Bát Bảo Phát Triển</span>
+                        <h2 class="font-serif-heading text-2xl sm:text-3xl font-bold">Gửi Đóng Góp & Tác Phẩm</h2>
+                        <p class="text-xs sm:text-sm font-serif-body opacity-85">
+                            Bạn biết một tác phẩm văn học hay hoặc muốn góp ý cho nhóm sinh viên Bát Bảo? Hãy chia sẻ cùng chúng tôi!
+                        </p>
+                    </div>
+
+                    <form id="contribForm" onsubmit="handleContribSubmit(event)" class="space-y-4 pt-2">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold mb-1.5">Họ & Tên của bạn</label>
+                                <input type="text" required placeholder="Nguyễn Văn A" class="w-full px-4 py-2.5 rounded-lg border border-custom bg-custom-card focus:outline-none focus:border-custom-accent text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold mb-1.5">Email liên hệ</label>
+                                <input type="email" required placeholder="booktalkdanhthucthoiquendoc@gmail.com" class="w-full px-4 py-2.5 rounded-lg border border-custom bg-custom-card focus:outline-none focus:border-custom-accent text-sm">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold mb-1.5">Loại đóng góp</label>
+                            <select class="w-full px-4 py-2.5 rounded-lg border border-custom bg-custom-card focus:outline-none focus:border-custom-accent text-sm">
+                                <option>Đề xuất thêm tác phẩm / truyện dân gian</option>
+                                <option>Gửi bài cảm nhận / phê bình văn học</option>
+                                <option>Góp ý giao diện & tính năng website</option>
+                                <option>Đăng ký đồng hành cùng nhóm Bát Bảo</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold mb-1.5">Nội dung chi tiết</label>
+                            <textarea rows="4" required placeholder="Nhập tên tác phẩm, nội dung đóng góp hoặc ý kiến của bạn..." class="w-full px-4 py-2.5 rounded-lg border border-custom bg-custom-card focus:outline-none focus:border-custom-accent text-sm"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-3 rounded-xl bg-custom-accent text-white font-medium hover:opacity-90 transition-all text-sm shadow-md flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-paper-plane"></i> Gửi Đóng Góp Đến Bát Bảo
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-custom-card border-t border-custom py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="text-center md:text-left">
+                    <div class="font-serif-heading font-bold text-2xl">Bát Bảo</div>
+                    <p class="text-xs text-custom-accent font-medium mt-0.5">Gieo trang — Gặt tri thức</p>
+                    <p class="text-xs opacity-75 mt-2 max-w-sm">
+                        Dự án văn học cộng đồng phi lợi nhuận do nhóm sinh viên sáng lập, dành tặng cho những tâm hồn yêu đọc sách.
+                    </p>
+                </div>
+
+                <div class="flex items-center gap-4 text-lg">
+                    <a href="https://www.facebook.com/profile.php?id=61595094835068" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full border border-custom flex items-center justify-center hover:border-custom-accent hover:text-custom-accent transition-colors" title="Fanpage Bát Bảo Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="mailto:booktalkdanhthucthoiquendoc@gmail.com" class="w-10 h-10 rounded-full border border-custom flex items-center justify-center hover:border-custom-accent hover:text-custom-accent transition-colors" title="Email liên hệ Bát Bảo"><i class="fa-solid fa-envelope"></i></a>
+                </div>
+            </div>
+
+            <div class="border-t border-custom pt-6 flex flex-col sm:flex-row items-center justify-between text-xs opacity-70 gap-3 text-center">
+                <p>© 2026 Nhóm Sinh Viên Bát Bảo. Email: booktalkdanhthucthoiquendoc@gmail.com</p>
+                <p class="font-serif-body italic">"Sách là ngọn đèn chiếu sáng tương lai."</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Reading Modal Popup -->
+    <div id="readerModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 opacity-0 invisible transition-all duration-300">
+        <div class="w-full max-w-4xl h-[92vh] rounded-2xl bg-custom-card border border-custom shadow-2xl flex flex-col overflow-hidden relative" style="background-color: var(--modal-bg);">
+            
+            <div class="p-3 sm:p-4 border-b border-custom flex items-center justify-between gap-2 bg-stone-500/5">
+                <div class="flex items-center gap-2 overflow-hidden">
+                    <button onclick="closeReaderModal()" class="p-2 rounded-lg hover:bg-stone-500/20 text-xs flex items-center gap-1 font-semibold">
+                        <i class="fa-solid fa-arrow-left"></i> <span class="hidden sm:inline">Trở về</span>
+                    </button>
+                    <div class="h-4 w-px bg-stone-400/40 mx-1"></div>
+                    <div class="truncate">
+                        <h3 id="modalBookTitle" class="font-serif-heading font-bold text-sm sm:text-base truncate">Tiêu đề tác phẩm</h3>
+                        <p id="modalBookAuthor" class="text-[11px] opacity-75 truncate">Tác giả</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-1.5 sm:gap-2">
+                    <button onclick="adjustFontSize(-1)" class="p-2 rounded-lg border border-custom hover:border-custom-accent text-xs font-bold" title="Giảm cỡ chữ">A-</button>
+                    <button onclick="adjustFontSize(1)" class="p-2 rounded-lg border border-custom hover:border-custom-accent text-xs font-bold" title="Tăng cỡ chữ">A+</button>
+                    
+                    <button id="fontStyleBtn" onclick="toggleReaderFont()" class="p-2 rounded-lg border border-custom hover:border-custom-accent text-xs font-serif" title="Đổi kiểu chữ">
+                        Serif
+                    </button>
+
+                    <button id="modalBookmarkBtn" onclick="toggleCurrentBookmark()" class="p-2 rounded-lg border border-custom hover:border-custom-accent text-xs text-custom-accent" title="Đánh dấu tác phẩm">
+                        <i class="fa-regular fa-bookmark text-sm"></i>
+                    </button>
+
+                    <button onclick="closeReaderModal()" class="p-2 rounded-lg border border-custom hover:bg-red-500 hover:text-white transition-colors text-xs">
+                        <i class="fa-solid fa-xmark text-sm"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="readerContentContainer" class="flex-grow overflow-y-auto p-6 sm:p-12 font-serif-body leading-relaxed space-y-6">
+            </div>
+
+            <div class="px-6 py-3 border-t border-custom text-xs opacity-60 flex justify-between items-center bg-stone-500/5">
+                <span>Dự án Bát Bảo — Đọc sách cộng đồng</span>
+                <span id="modalCategoryTag" class="italic">Thể loại</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bookmarks Drawer Sidebar -->
+    <div id="bookmarkDrawer" class="fixed inset-y-0 right-0 z-50 w-80 max-w-full bg-custom-card border-l border-custom shadow-2xl transform translate-x-full transition-transform duration-300 p-6 flex flex-col">
+        <div class="flex items-center justify-between border-b border-custom pb-4 mb-4">
+            <h3 class="font-serif-heading font-bold text-lg flex items-center gap-2">
+                <i class="fa-solid fa-bookmark text-custom-accent"></i> Tủ Sách Đã Lưu
+            </h3>
+            <button onclick="toggleBookmarksDrawer()" class="p-1.5 rounded-lg hover:bg-stone-500/20">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <div id="bookmarkList" class="flex-grow overflow-y-auto space-y-3">
+        </div>
+
+        <div class="border-t border-custom pt-4 text-xs opacity-70 text-center">
+            Dữ liệu được lưu trực tiếp trên thiết bị của bạn.
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-custom-accent text-white text-xs font-semibold px-4 py-3 rounded-xl shadow-xl transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-2 pointer-events-none">
+        <i class="fa-solid fa-circle-check"></i>
+        <span id="toastMsg">Thông báo</span>
+    </div>
+
+    <script>
+        /* Database Expanded Literary Works + Satirical Comedy & Folklore */
+        const BOOKS_DATA = [
+            /* TRUYỆN CƯỜI & TRUYỆN DÂN GIAN CÓ CHIỀU SÂU SẮC SẢO */
+            {
+                id: "tam-dai-con-ga",
+                title: "Tam Đại Con Gà",
+                author: "Truyện cười Dân gian Việt Nam",
+                category: "dangian",
+                categoryLabel: "Truyện cười Dân gian",
+                period: "Văn học Dân gian",
+                coverBg: "from-amber-700 to-yellow-900",
+                icon: "fa-feather-pointed",
+                summary: "Bài học trào phúng sâu sắc châm biếm thói giấu dốt, sĩ diện hão của thầy đồ dốt và thói hư danh trong xã hội.",
+                content: `
+                    <h2 class="text-2xl font-bold font-serif-heading text-center mb-2">Tam Đại Con Gà</h2>
+                    <p class="italic text-center text-sm opacity-80 mb-8">Truyện cười Dân gian Việt Nam</p>
+
+                    <p>Xưa có một anh thầy đồ dốt lòi mắt, nhưng đi đâu cũng khoác xác là mình thông thạo chữ nghĩa. Một hôm, có người nông dân nghe tiếng liền mời thầy về nhà dạy chữ cho con.</p>
+
+                    <p>Đang khi dạy đến chữ <strong>"Kê"</strong> (nghĩa là con gà), chữ lại có nhiều nét rối rắm quá, thầy đồ nhìn mãi không nhận ra chữ gì. Bí quá, nhưng sợ học trò chê dốt, thầy bèn phán đại:</p>
+
+                    <blockquote class="italic border-l-2 border-custom-accent pl-4 my-4 font-bold opacity-90">
+                        "- Chữ này là chữ 'Dủ dỉ là con dỉ dủ'!"
+                    </blockquote>
+
+                    <p>Thầy dặn học trò đọc nhỏ nhỏ. Nhưng trong lòng thầy vẫn lo lắng không biết có đúng không. Đêm hôm ấy, thầy ra khấn Thổ Công xin đài âm dương. Thổ Công cho ba đài đều linh ứng cả (được cả ba lần). Thầy mừng quá, sáng hôm sau nghễu nghện bảo học trò đọc to lên:</p>
+
+                    <p class="font-bold text-center text-custom-accent py-2">"- Dủ dỉ là con dỉ dủ! Dủ dỉ là con dỉ dủ!"</p>
+
+                    <p>Thổ công chủ nhà đi làm về nghe thấy thế, mới bước vào bảo thầy:<br>
+                    "- Thưa thầy, chữ ấy là chữ 'Kê', nghĩa là con gà chứ sao lại đọc là 'dủ dỉ là con dỉ dủ'?"</p>
+
+                    <p>Thầy đồ giật mình nhưng lập tức chống chế ngay:<br>
+                    "- Tôi biết chữ ấy là chữ 'Kê' chứ! Nhưng tôi dạy cháu thế là dạy cho thấu tận gốc gác! Dủ dỉ là con dỉ dủ, dỉ dủ là con gà trống, con gà trống là cháu con gà mái, con gà mái lại là <strong>Tam đại con gà</strong> nhà ông đấy!"</p>
+
+                    <h3 class="text-lg font-bold font-serif-heading mt-6 mb-2 text-custom-accent">Giá trị chiều sâu</h3>
+                    <p>Truyện không chỉ tạo nên tiếng cười giòn giã bởi sự ngụy biện thông minh hão của thầy đồ, mà còn là lời cảnh tỉnh sắc sảo đối với thói giấu dốt. Dốt mà không chịu học hỏi, cố giấu cái dốt thì càng bộc lộ cái dốt một cách thê thảm và nực cười hơn.</p>
+                `
+            },
+            {
+                id: "nhung-no-phai-bang-hai-may",
+                title: "Nhưng Nó Phải Bằng Hai Mày",
+                author: "Truyện cười Dân gian Việt Nam",
+                category: "dangian",
+                categoryLabel: "Truyện cười Dân gian",
+                period: "Văn học Dân gian",
+                coverBg: "from-stone-900 to-amber-950",
+                icon: "fa-gavel",
+                summary: "Tác phẩm trào phúng đỉnh cao bóc trần bản chất tham nhũng, ăn hối lộ trắng trợn của quan lại thời phong kiến.",
+                content: `
+                    <h2 class="text-2xl font-bold font-serif-heading text-center mb-2">Nhưng Nó Phải Bằng Hai Mày</h2>
+                    <p class="italic text-center text-sm opacity-80 mb-8">Truyện cười Dân gian Việt Nam</p>
+
+                    <p>Làng nọ có hai anh nông dân tên là Cải và Ngô đánh nhau rồi kiện nhau ra quan. Anh Cải sợ mình thua kiện nên trước hôm xử án đã lén lút sang nhà quan, đút lót cho quan <strong>Năm quan tiền</strong> để mong quan xử thắng.</p>
+
+                    <p>Anh Ngô thấy Cải đút lót cũng sợ, bèn lén sau đút lót cho quan tới <strong>Mười quan tiền</strong>.</p>
+
+                    <p>Hôm xử kiện, quan lớn ngồi trên ngai, phán ngay một câu anh Cải thua kiện và ra lệnh đánh Cải mười roi.</p>
+
+                    <p>Cải bất ngờ quá, vội xòe 5 ngón tay ra dấu nhìn quan rồi nói nhỏ:<br>
+                    "- Xin quan xét lại, lý lẽ thuộc về tôi mà! (ý nhắc quan 5 quan tiền đã đút trước)."</p>
+
+                    <p>Quan lớn cũng xòe bàn tay úp lên 5 ngón tay kia, lắc đầu trả lời:</p>
+
+                    <blockquote class="italic border-l-2 border-custom-accent pl-4 my-6 font-bold opacity-90">
+                        "- Tao biết là tao có lý... Nhưng thằng Ngô nó lại lý 'bằng hai mày'!"
+                    </blockquote>
+
+                    <h3 class="text-lg font-bold font-serif-heading mt-6 mb-2 text-custom-accent">Giá trị chiều sâu</h3>
+                    <p>Tiếng cười chua chát vạch trần bộ mặt thật của chốn quan trường tham nhũng: "Lý lẽ" không thuộc về lẽ phải hay đạo lý, mà thuộc về độ dày của tiền hối lộ. Quan tham biến cán cân lý lẽ thành cán cân tiền bạc một cách tráo trở.</p>
+                `
+            },
+            {
+                id: "lon-cuoi-ao-moi",
+                title: "Lợn Cưới Áo Mới",
+                author: "Truyện cười Dân gian Việt Nam",
+                category: "dangian",
+                categoryLabel: "Truyện cười Dân gian",
+                period: "Văn học Dân gian",
+                coverBg: "from-orange-800 to-amber-950",
+                icon: "fa-shirt",
+                summary: "Truyện cười dân gian đả kích thói khoe khoang kệch kợm, lố lăng trong đời sống thường nhật.",
+                content: `
+                    <h2 class="text-2xl font-bold font-serif-heading text-center mb-2">Lợn Cưới Áo Mới</h2>
+                    <p class="italic text-center text-sm opacity-80 mb-8">Truyện cười Dân gian Việt Nam</p>
+
+                    <p>Có một anh tính hay khoe khoang. Một hôm, anh ta may được cái áo mới liền mặc ngay vào rồi đứng ở cửa đợi có ai đi qua để khoe. Đứng từ sáng đến chiều mà chẳng có ai ngó ngàng tới.</p>
+
+                    <p>Đang lúc tức tối thì có một anh khác tính cũng thích khoe chạy hớt hơ hớt hãi đến hỏi:<br>
+                    "- Bác có thấy con lợn sổng của tôi chạy qua đây không?"</p>
+
+                    <p>Anh mặc áo mới liền vén ngay vạt áo lên khoe rồi cất tiếng phán:</p>
+
+                    <blockquote class="italic border-l-2 border-custom-accent pl-4 my-4 font-bold opacity-90">
+                        "- Từ lúc tôi mặc cái áo mới này, tôi chẳng thấy con 'lợn cưới' nào chạy qua đây cả!"
+                    </blockquote>
+
+                    <h3 class="text-lg font-bold font-serif-heading mt-6 mb-2 text-custom-accent">Ý nghĩa châm biếm</h3>
+                    <p>Cả hai kẻ khoe khoang gặp nhau tạo nên một tình huống gây cười đặc sắc: Một kẻ khoe con lợn định làm cỗ cưới, một kẻ khoe chiếc áo mới mua. Thói khoe khoang biến cả hai trở nên vô lý và nực cười trong mắt người đời.</p>
+                `
+            },
+            {
+                id: "thach-sanh",
+                title: "Thạch Sanh (Truyện cổ tích chiều sâu)",
+                author: "Truyện cổ tích Dân gian",
+                category: "dangian",
+                categoryLabel: "Truyện cổ tích Dân gian",
+                period: "Văn học Dân gian",
+                coverBg: "from-emerald-900 to-stone-900",
+                icon: "fa-shield-halved",
+                summary: "Truyện cổ tích hùng ca về lòng dũng cảm, sự vị tha và ước mơ công lý chiến thắng cái ác của nhân dân ta.",
+                content: `
+                    <h2 class="text-2xl font-bold font-serif-heading text-center mb-2">Thạch Sanh</h2>
+                    <p class="italic text-center text-sm opacity-80 mb-8">Truyện cổ tích Dân gian Việt Nam</p>
+
+                    <p>Thạch Sanh mồ côi cha mẹ từ nhỏ, sống lủi thủi dưới gốc cây đa chỉ với một tấm khố và chiếc rìu sắt do cha để lại. Lý Thông vì thấy Thạch Sanh khỏe mạnh liền kết nghĩa anh em giả tạo để lợi dụng.</p>
+
+                    <p>Khi Lý Thông lừa Thạch Sanh đi nộp mạng cho Trăn tinh, Thạch Sanh đã dùng bản lĩnh dũng cảm diệt Trăn tinh, mang đầu quái vật về. Nhưng Lý Thông lại cướp công. Tiếp đó, Thạch Sanh xuống hang diệt Đại bàng cứu công chúa, lại bị Lý Thông lấp hang dìm chết...</p>
+
+                    <h3 class="text-lg font-bold font-serif-heading mt-8 mb-3 text-custom-accent">Tiếng đàn công lý & Bát cơm thần kỳ</h3>
+                    <p>Trong ngục tối, Thạch Sanh gảy lên tiếng đàn thần. Tiếng đàn oan khuất vạch trần bộ mặt xảo quyệt của Lý Thông, minh oan cho chàng và hàn gắn tâm hồn công chúa bị câm.</p>
+
+                    <p>Khi quân 18 nước chư hầu kéo sang xâm lược, Thạch Sanh không dùng đao kiếm mà mang niêu cơm thần ra đãi quân sĩ. Niêu cơm ăn mãi không hết đã thu phục lòng người, dập tắt chiến tranh trong hòa bình.</p>
+                `
+            },
+
+            /* NAM CAO & TỐ HỮU & TÁC PHẨM KHÁC */
+            {
+                id: "chi-pheo",
+                title: "Chí Phèo",
+                author: "Nam Cao",
+                category: "truyenngan",
+                categoryLabel: "Truyện ngắn",
+                period: "Văn học Hiện đại (1941)",
+                coverBg: "from-amber-800 to-stone-900",
+                icon: "fa-whiskey-glass",
+                summary: "Kiệt tác phản ánh bi kịch bị tha hóa, lưu manh hóa và khát vọng sống làm người lương thiện tha thiết của người nông dân.",
+                content: `
+                    <h2 class="text-2xl font-bold font-serif-heading text-center mb-2">Chí Phèo</h2>
+                    <p class="italic text-center text-sm opacity-80 mb-8">Tác giả: Nam Cao (1941)</p>
+                    <p>Hắn vừa đi vừa chửi. Bao giờ cũng thế, cứ rượu xong là hắn chửi. Bắt đầu hắn chửi trời. Rồi hắn chửi đời... Hắn tức mình hắn chửi ngay tất cả làng Vũ Đại...</p>
+                    <h3 class="text-lg font-bold font-serif-heading mt-6 mb-2 text-custom-accent">Bát cháo hành & Bi kịch</h3>
+                    <p>Thị Nở mang cho hắn bát cháo hành còn nghi ngút khói. Hắn thèm lương thiện, hắn muốn làm hòa với mọi người biết bao!</p>
+                    <p class="italic border-l-2 border-custom-accent pl-4 my-4 font-bold">"Ai cho tôi lương thiện? Tôi không thể làm người lương thiện được nữa!"</p>
+                `
+            },
+            {
+                id: "lao-hap",
+                title: "Lão Hạc",
+                author: "Nam Cao",
+                category: "truyenngan",
+                categoryLabel: "Truyện ngắn",
+                period: "Văn học Hiện đại (1943)",
+                coverBg: "from-stone-800 to-amber-950",
+                icon: "fa-dog",
+                summary: "Câu chuyện cảm động về tình cha con, tình người và phẩm giá cao quý của người nông dân nghèo trước cái chết.",
+                content: `
+                    <h2 class="text-2xl font-bold font-serif-heading text-center mb-2">Lão Hạc</h2>
+                    <p class="italic text-center text-sm opacity-80 mb-8">Tác giả: Nam Cao (1943)</p>
+                    <p>- Cậu Vàng đi đời rồi, ông giáo ạ! Lão khóc hông hộc...</p>
+                `
+            },
+            {
+                id: "tu-ay",
+                title: "Từ Ấy",
+                author: "Tố Hữu",
+                category: "thoca",
+                categoryLabel: "Thơ ca",
+                period: "Thơ cách mạng (1938)",
+                coverBg: "from-red-700 to-amber-900",
+                icon: "fa-sun",
+                summary: "Tuyên ngôn lý tưởng sống và niềm vui sướng vô bờ của người thanh niên cộng sản khi gặp ánh sáng cách mạng.",
+                content: `
+                    <h2 class="text-2xl font-bold font-serif-heading text-center mb-2">Từ Ấy</h2>
+                    <p class="italic text-center text-sm opacity-80 mb-8">Nhà thơ Tố Hữu (1938)</p>
+                    <div class="text-center font-serif-body space-y-3">
+                        <p>Từ ấy trong tôi bừng nắng hạ<br>Mặt trời chân lý chói qua tim<br>Hồn tôi là một vườn hoa lá<br>Rất đậm hương và rộn tiếng chim...</p>
+                    </div>
+                `
+            },
+            {
+                id: "viet-bac",
+                title: "Việt Bắc",
+                author: "Tố Hữu",
+                category: "thoca",
+                categoryLabel: "Thơ ca",
+                period: "1954",
+                coverBg: "from-emerald-800 to-amber-950",
+                icon: "fa-tree",
+                summary: "Khúc ca trữ tình hùng hạp về nghĩa tình kháng chiến sâu nặng giữa cán bộ và nhân dân chiến khu Việt Bắc.",
+                content: `
+                    <h2 class="text-2xl font-bold font-serif-heading text-center mb-2">Việt Bắc</h2>
+                    <p class="italic text-center text-sm opacity-80 mb-8">Nhà thơ Tố Hữu</p>
+                    <p class="text-center">Ta về, mình có nhớ ta<br>Ta về ta nhớ những hoa cùng người...</p>
+                `
+            }
+        ];
+
+        /* Global Application State */
+        let activeCategory = 'all';
+        let currentModalBookId = null;
+        let bookmarks = JSON.parse(localStorage.getItem('batbao_bookmarks') || '[]');
+        let readerFontSize = 16;
+        let readerFontSerif = true;
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('batbao_theme') || 'sepia';
+            setTheme(savedTheme);
+            renderBooks();
+            updateBookmarkBadge();
+
+            document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+                document.getElementById('mobileMenu').classList.toggle('hidden');
+            });
+        });
+
+        function setTheme(theme) {
+            document.documentElement.className = 'scroll-smooth theme-' + theme;
+            localStorage.setItem('batbao_theme', theme);
+            
+            const iconMap = { light: 'fa-sun', sepia: 'fa-book-open', dark: 'fa-moon' };
+            const labelMap = { light: 'Sáng', sepia: 'Sepia', dark: 'Ban đêm' };
+            
+            document.getElementById('themeIcon').className = `fa-solid ${iconMap[theme]} text-sm`;
+            document.getElementById('themeLabel').textContent = labelMap[theme];
+        }
+
+        function setCategory(cat) {
+            activeCategory = cat;
+            document.querySelectorAll('.cat-tab').forEach(btn => {
+                if (btn.dataset.cat === cat) {
+                    btn.classList.add('bg-custom-accent', 'text-white');
+                    btn.classList.remove('bg-custom-card');
+                } else {
+                    btn.classList.remove('bg-custom-accent', 'text-white');
+                    btn.classList.add('bg-custom-card');
+                }
+            });
+            renderBooks();
+        }
+
+        function filterBooks() {
+            renderBooks();
+        }
+
+        function renderBooks() {
+            const container = document.getElementById('booksGrid');
+            const emptyState = document.getElementById('emptyState');
+            const searchVal = document.getElementById('searchInput').value.toLowerCase().trim();
+
+            const filtered = BOOKS_DATA.filter(book => {
+                const matchCat = activeCategory === 'all' || book.category === activeCategory;
+                const matchSearch = book.title.toLowerCase().includes(searchVal) || 
+                                    book.author.toLowerCase().includes(searchVal) ||
+                                    book.summary.toLowerCase().includes(searchVal);
+                return matchCat && matchSearch;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            container.innerHTML = filtered.map(book => {
+                const isBookmarked = bookmarks.includes(book.id);
+                return `
+                    <div class="bg-custom-card rounded-2xl border border-custom p-5 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 book-shadow">
+                        <div class="space-y-4">
+                            <div class="w-full h-44 rounded-xl bg-gradient-to-br ${book.coverBg} text-white p-4 flex flex-col justify-between relative overflow-hidden shadow-inner">
+                                <div class="flex justify-between items-start z-10">
+                                    <span class="text-[10px] font-bold px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-md uppercase tracking-wider">
+                                        ${book.categoryLabel}
+                                    </span>
+                                    <button onclick="toggleBookmark('${book.id}', event)" class="text-white/80 hover:text-white text-base">
+                                        <i class="${isBookmarked ? 'fa-solid' : 'fa-regular'} fa-bookmark"></i>
+                                    </button>
+                                </div>
+
+                                <div class="z-10">
+                                    <i class="fa-solid ${book.icon} text-3xl opacity-30 mb-1"></i>
+                                    <h3 class="font-serif-heading font-bold text-lg leading-snug line-clamp-2">${book.title}</h3>
+                                    <p class="text-xs text-white/80 italic mt-0.5">${book.author}</p>
+                                </div>
+
+                                <div class="absolute -right-4 -bottom-4 text-7xl text-white/5 pointer-events-none">
+                                    <i class="fa-solid ${book.icon}"></i>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="text-[11px] text-custom-accent font-semibold mb-1">${book.period}</div>
+                                <p class="text-xs opacity-80 leading-relaxed line-clamp-3 font-serif-body">${book.summary}</p>
+                            </div>
+                        </div>
+
+                        <div class="pt-5 mt-2 border-t border-custom flex items-center justify-between">
+                            <span class="text-[11px] opacity-60 italic">Miễn phí đọc</span>
+                            <button onclick="openReaderModal('${book.id}')" class="px-4 py-2 rounded-lg bg-custom-accent text-white text-xs font-semibold hover:opacity-90 transition-opacity flex items-center gap-1.5">
+                                <i class="fa-solid fa-book-open text-[11px]"></i> Đọc ngay
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function openReaderModal(bookId) {
+            const book = BOOKS_DATA.find(b => b.id === bookId);
+            if (!book) return;
+
+            currentModalBookId = bookId;
+            document.getElementById('modalBookTitle').textContent = book.title;
+            document.getElementById('modalBookAuthor').textContent = `Tác giả: ${book.author} (${book.period})`;
+            document.getElementById('modalCategoryTag').textContent = book.categoryLabel;
+
+            const contentArea = document.getElementById('readerContentContainer');
+            contentArea.innerHTML = book.content;
+            applyReaderStyles();
+
+            updateModalBookmarkIcon();
+
+            const modal = document.getElementById('readerModal');
+            modal.classList.remove('opacity-0', 'invisible');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeReaderModal() {
+            const modal = document.getElementById('readerModal');
+            modal.classList.add('opacity-0', 'invisible');
+            document.body.style.overflow = '';
+            currentModalBookId = null;
+        }
+
+        function adjustFontSize(delta) {
+            readerFontSize = Math.min(Math.max(readerFontSize + delta, 13), 26);
+            applyReaderStyles();
+        }
+
+        function toggleReaderFont() {
+            readerFontSerif = !readerFontSerif;
+            document.getElementById('fontStyleBtn').textContent = readerFontSerif ? 'Serif' : 'Sans';
+            applyReaderStyles();
+        }
+
+        function applyReaderStyles() {
+            const container = document.getElementById('readerContentContainer');
+            container.style.fontSize = `${readerFontSize}px`;
+            if (readerFontSerif) {
+                container.classList.add('font-serif-body');
+                container.classList.remove('font-sans');
+            } else {
+                container.classList.add('font-sans');
+                container.classList.remove('font-serif-body');
+            }
+        }
+
+        function toggleBookmark(bookId, e) {
+            if (e) e.stopPropagation();
+            const index = bookmarks.indexOf(bookId);
+            if (index > -1) {
+                bookmarks.splice(index, 1);
+                showToast('Đã xóa tác phẩm khỏi Tủ sách đã lưu');
+            } else {
+                bookmarks.push(bookId);
+                showToast('Đã lưu tác phẩm vào Tủ sách của bạn!');
+            }
+            localStorage.setItem('batbao_bookmarks', JSON.stringify(bookmarks));
+            updateBookmarkBadge();
+            renderBooks();
+            renderBookmarkDrawerList();
+            updateModalBookmarkIcon();
+        }
+
+        function toggleCurrentBookmark() {
+            if (currentModalBookId) {
+                toggleBookmark(currentModalBookId);
+            }
+        }
+
+        function updateModalBookmarkIcon() {
+            if (!currentModalBookId) return;
+            const btn = document.getElementById('modalBookmarkBtn');
+            const isBookmarked = bookmarks.includes(currentModalBookId);
+            btn.innerHTML = `<i class="${isBookmarked ? 'fa-solid' : 'fa-regular'} fa-bookmark text-sm"></i>`;
+        }
+
+        function updateBookmarkBadge() {
+            const badge = document.getElementById('bookmarkCount');
+            if (bookmarks.length > 0) {
+                badge.textContent = bookmarks.length;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        function toggleBookmarksDrawer() {
+            const drawer = document.getElementById('bookmarkDrawer');
+            drawer.classList.toggle('translate-x-full');
+            renderBookmarkDrawerList();
+        }
+
+        function renderBookmarkDrawerList() {
+            const container = document.getElementById('bookmarkList');
+            const savedBooks = BOOKS_DATA.filter(b => bookmarks.includes(b.id));
+
+            if (savedBooks.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-10 opacity-60 space-y-2">
+                        <i class="fa-regular fa-bookmark text-3xl"></i>
+                        <p class="text-xs">Chưa có tác phẩm nào được lưu.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = savedBooks.map(b => `
+                <div class="p-3 rounded-xl border border-custom bg-custom-card flex items-center justify-between gap-3">
+                    <div class="truncate cursor-pointer" onclick="openReaderModal('${b.id}'); toggleBookmarksDrawer();">
+                        <h4 class="font-serif-heading font-bold text-sm truncate">${b.title}</h4>
+                        <p class="text-[11px] opacity-75">${b.author}</p>
+                    </div>
+                    <button onclick="toggleBookmark('${b.id}')" class="text-red-500 hover:text-red-700 text-xs p-1">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function handleContribSubmit(e) {
+            e.preventDefault();
+            showToast('Cảm ơn đóng góp quý báu của bạn tới Bát Bảo!');
+            e.target.reset();
+        }
+
+        function closeMobileMenu() {
+            document.getElementById('mobileMenu').classList.add('hidden');
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').textContent = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
